@@ -1,4 +1,4 @@
-package entities;
+package com.macovski.entities;
 
 import java.io.Serializable;
 
