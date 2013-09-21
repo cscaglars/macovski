@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="C:/Server/jboss-as-7.1.1.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="lib" path="C:/Server/jboss-as-7.1.1.Final/modules/org/hibernate/main/hibernate-core-4.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Server/jboss-as-7.1.1.Final/modules/org/hibernate/main/hibernate-entitymanager-4.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ertan Ergun/Documents/GitHub/macovski/libs/junit-4.11.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
