@@ -2,6 +2,8 @@ package com.macovski.tests.clients;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -25,14 +27,19 @@ public class TestClient {
 		CreateVenue(BaseManager);
 		CreateMatch(BaseManager);
 		AssingVenue(BaseManager);
+		InvitePlayerToMatch(BaseManager);
 
 	}
 	
 	private static void CreatePlayer(IBaseTestManager BaseManager)
 	{
+		List<Match> matches = new ArrayList<Match>();
 		Player player = new Player();
 		player.setPlayerName("Ertan");
 		player.setCity("Milano");
+		player.setInvitedMatches(matches);
+		player.setEnrolledMatches(matches);
+		player.setRejectedMatches(matches);
 		player.setPlayerLogin(CreateLogin());
 		player.setPlayerStats(CreateStatsforPlayer());
 		BaseManager.Insert(player);
@@ -88,6 +95,19 @@ public class TestClient {
 		match = (Match) BaseManager.GetAll(match).get(0);
 		match.setMatchVenue(venue);
 		BaseManager.Update(match);
+	}
+	
+	private static void InvitePlayerToMatch(IBaseTestManager BaseManager)
+	{
+		Match match = new Match();
+		Player player = new Player();
+		List<Match> matches = new ArrayList<Match>();
+		match = (Match) BaseManager.GetAll(match).get(0);
+		player = (Player) BaseManager.GetAll(player).get(0);
+		matches = player.getInvitedMatches();
+		matches.add(match);
+		player.setInvitedMatches(matches);
+		BaseManager.Update(player);
 	}
 	
 	private static IBaseTestManager doLookup() {
