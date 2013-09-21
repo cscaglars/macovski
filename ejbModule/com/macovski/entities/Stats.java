@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @SuppressWarnings("unused")
@@ -18,7 +19,7 @@ public class Stats extends Base {
 	private static final long serialVersionUID = -5988547713447020264L;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	//@JoinColumn(name = "PlayerId", referencedColumnName = "Id", insertable = false, updatable = false)
+	@PrimaryKeyJoinColumn(name = "PlayerId", referencedColumnName = "Id")
 	private Player player;
 	
 	@Column(name = "PlayerRank", nullable = true)

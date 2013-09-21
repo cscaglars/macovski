@@ -32,8 +32,8 @@ public class Player extends Base {
 	//@JoinColumn(name = "LoginId", referencedColumnName = "Id", insertable = false, updatable = false)
 	private Login PlayerLogin;
 	
-	//we can reach player from stats thats why it creates foreign key Ids inside both tables
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	//@JoinColumn(name = "StatsId", referencedColumnName = "Id", insertable = false, updatable = false)
 	private Stats PlayerStats;
 	
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
