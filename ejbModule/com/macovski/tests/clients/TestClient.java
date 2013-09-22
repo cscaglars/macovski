@@ -135,13 +135,23 @@ public class TestClient {
 	
 	private static void InvitePlayerToMatch(IBaseTestManager BaseManager)
 	{
-		for (int i = 0; i < 100; i++) 
+		List<Match> matches = new ArrayList<Match>();
+		
+		for(int i = 0; i < 10; i++)
 		{
 			Match match = new Match();
-			Player player = new Player();
-			match = (Match) BaseManager.GetAll(match).get(randBetween(0,9));
-			player = (Player) BaseManager.GetAll(player).get(i);
-			BaseManager.InvitePlayerToMatch(player, match);
+			match = (Match) BaseManager.GetAll(match).get(i);
+			matches.add(match);
+		}	
+		
+		for (Match match : matches) {
+			
+			for (int i = 0; i < 100; i++) 
+			{
+				Player player = new Player();
+				player = (Player) BaseManager.GetAll(player).get(i);
+				BaseManager.InvitePlayerToMatch(player, match);
+			}
 		}
 	}
 	
