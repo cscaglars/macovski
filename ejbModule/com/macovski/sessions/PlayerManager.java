@@ -1,62 +1,39 @@
-package com.macovski.tests.sessions;
+package com.macovski.sessions;
 
 import java.util.List;
 
 import com.macovski.entities.Match;
 import com.macovski.entities.Player;
-import com.macovski.tests.interfaces.IBaseTestManager;
+import com.macovski.interfaces.IPlayerManager;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.mail.Session;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.metamodel.EntityType;
 
-import org.hibernate.ejb.HibernateEntityManager;
 
 /**
- * Session Bean implementation class BaseTestManager
+ * Session Bean implementation class PlayerManager
  */
-@Stateless(mappedName="BaseTestManager")
-@EJB(name="TestManager", beanInterface=IBaseTestManager.class)
-public class BaseTestManager implements IBaseTestManager {
-
+@Stateless(mappedName="PlayerManager")
+@EJB(name="PlayerManager", beanInterface=IPlayerManager.class)
+public class PlayerManager extends BaseManager<Player> implements IPlayerManager {
+     
 	@PersistenceContext(unitName = "JPADB")
-    private EntityManager entityManager;
-	
-	//EntityTransaction tx = entityManager.getTransaction();
+    protected EntityManager em;
 	
     /**
-     * Default constructor. 
+     * @see BaseManager#BaseManager()
      */
-    public BaseTestManager() {
-        // TODO Auto-generated constructor stub
+    public  PlayerManager() {
+    	 super();
+        // TODO Auto-generated constructor stub  	 
     }
     
-    public void Insert(Object entity)
+    public void InitializeEM()
     {
-    	entityManager.persist(entity);
-    }
-
-    public void Delete(Object entity)
-    {
-    	entityManager.remove(entity);
-    }
-    
-    public void Update(Object entity)
-    {
-    	entityManager.merge(entity);
-    }
-    
-    public List<Object> GetAll(Object object)
-    {
-    	System.out.println("Object is " + object.getClass().getSimpleName());
-    	String queryString = "SELECT g FROM " + object.getClass().getSimpleName() +" g";
-    	Query query = entityManager.createQuery(queryString);
-    	return (List<Object>) query.getResultList();
+    	entityManager = em;
     }
     
     public void InvitePlayerToMatch(Player player, Match match)
@@ -91,6 +68,19 @@ public class BaseTestManager implements IBaseTestManager {
     	}    	
     }
     
+    public List<Player> GetAll()
+    {
+    	System.out.println("Object is " + Player.class.getSimpleName());
+    	String queryString = "SELECT g FROM " + Player.class.getSimpleName() +" g";
+    	Query query = entityManager.createQuery(queryString);
+    	List<Player> resultList = (List<Player>) query.getResultList();
+		return resultList;
+    }
+    
+    
+    /**
+     * Testing Purpose Only
+     */
     public void AcceptMatchInviteByPlayer(Player player)
     {
     	Player invitedPlayer = entityManager.find(Player.class, player.getId());
@@ -124,5 +114,5 @@ public class BaseTestManager implements IBaseTestManager {
     private static int randBetween(int start, int end) {
         return start + (int)Math.round(Math.random() * (end - start));
     }
-
+    
 }

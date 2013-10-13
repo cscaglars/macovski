@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
@@ -15,13 +17,17 @@ import com.macovski.entities.Match;
 import com.macovski.entities.Player;
 import com.macovski.entities.Stats;
 import com.macovski.entities.Venue;
-import com.macovski.jndi.JNDILookupClass;
+import com.macovski.interfaces.IPlayerManager;
+import com.macovski.jndi.JNDILookup;
+import com.macovski.sessions.PlayerManager;
 import com.macovski.tests.interfaces.IBaseTestManager;
 
 public class TestClient {
-
+	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//IPlayerManager PlayerManager  = new  JNDILookup<PlayerManager, IPlayerManager>().doLookup();
 		
 		IBaseTestManager BaseManager = doLookup();
 		
@@ -43,6 +49,7 @@ public class TestClient {
 			player.setCity("TestLocation"+i);
 			player.setPlayerLogin(CreateLogin(i));
 			player.setPlayerStats(CreateStatsforPlayer(i));
+			//PlayerManager.Insert(player);
 			BaseManager.Insert(player);
 		}
 	}
@@ -192,7 +199,7 @@ public class TestClient {
 		IBaseTestManager bean = null;
         try {
             // 1. Obtaining Context
-            context = JNDILookupClass.getInitialContext();
+            context = JNDILookup.getInitialContext();
             // 2. Generate JNDI Lookup name
             String lookupName = "ejb:/macovski//BaseTestManager!com.macovski.tests.interfaces.IBaseTestManager";
             // 3. Lookup and cast

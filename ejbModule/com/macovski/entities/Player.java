@@ -25,6 +25,9 @@ public class Player extends Base {
 	@Column(name = "PlayerName", nullable = true)
 	private String PlayerName;
 	
+	@Column(name = "PlayerLastName", nullable = true)
+	private String PlayerLastName;
+	
 	@Column(name = "PlayerCity", nullable = true)
 	private String City;
 	
@@ -66,6 +69,14 @@ public class Player extends Base {
 
 	public void setPlayerName(String playerName) {
 		PlayerName = playerName;
+	}
+
+	public String getPlayerLastName() {
+		return PlayerLastName;
+	}
+
+	public void setPlayerLastName(String playerLastName) {
+		PlayerLastName = playerLastName;
 	}
 
 	public String getCity() {
