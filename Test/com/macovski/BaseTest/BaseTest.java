@@ -9,8 +9,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

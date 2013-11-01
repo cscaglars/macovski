@@ -12,6 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.LogManager;
+
 
 /**
  * Session Bean implementation class PlayerManager
@@ -22,6 +25,8 @@ public class PlayerManager extends BaseManager<Player> implements IPlayerManager
      
 	@PersistenceContext(unitName = "JPADB")
     protected EntityManager em;
+	
+	private Logger Log = LogManager.getLogger(PlayerManager.class.getName());
 	
     /**
      * @see BaseManager#BaseManager()
@@ -68,13 +73,20 @@ public class PlayerManager extends BaseManager<Player> implements IPlayerManager
     	}    	
     }
     
-    public List<Player> GetAll()
+    @SuppressWarnings("unchecked")
+	public List<Player> GetAll()
     {
     	System.out.println("Object is " + Player.class.getSimpleName());
     	String queryString = "SELECT g FROM " + Player.class.getSimpleName() +" g";
     	Query query = entityManager.createQuery(queryString);
     	List<Player> resultList = (List<Player>) query.getResultList();
 		return resultList;
+    }
+    
+    public Player GetById(Long Id)
+    {
+    	Log.info("PlayerManager returned instance with id: " + Id.toString());
+    	return (Player)entityManager.find(Player.class, Id);
     }
     
     

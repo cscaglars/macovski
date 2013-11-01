@@ -9,8 +9,6 @@ import javax.naming.NamingException;
 import com.macovski.interfaces.IMatchManager;
 import com.macovski.interfaces.IPlayerManager;
 import com.macovski.interfaces.IVenueManager;
-import com.macovski.tests.interfaces.IBaseTestManager;
-import com.sun.org.apache.bcel.internal.generic.Type;
 
 public class JNDILookup {
 	 

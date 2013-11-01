@@ -11,6 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 /**
  * Session Bean implementation class OldMatchManager
  */
@@ -20,6 +23,8 @@ public class OldMatchManager extends BaseManager<OldMatch> implements IOldMatchM
      
 	@PersistenceContext(unitName = "JPADB")
     protected EntityManager em;
+	
+	private Logger Log = LogManager.getLogger(OldMatchManager.class.getName());
 	
     /**
      * @see BaseManager#BaseManager()
@@ -34,13 +39,20 @@ public class OldMatchManager extends BaseManager<OldMatch> implements IOldMatchM
     	entityManager = em;
     }
     
-    public List<OldMatch> GetAll()
+    @SuppressWarnings("unchecked")
+	public List<OldMatch> GetAll()
     {
     	System.out.println("Object is " + OldMatch.class.getSimpleName());
     	String queryString = "SELECT g FROM " + OldMatch.class.getSimpleName() +" g";
     	Query query = entityManager.createQuery(queryString);
     	List<OldMatch> resultList = (List<OldMatch>) query.getResultList();
 		return resultList;
+    }
+    
+    public OldMatch GetById(Long Id)
+    {
+    	Log.info("OldMatchManager returned instance with id: " + Id.toString());
+    	return (OldMatch)entityManager.find(OldMatch.class, Id);
     }
 
 }

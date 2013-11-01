@@ -4,12 +4,11 @@ import java.util.List;
 
 import com.macovski.interfaces.IBaseManager;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.LogManager;
 
 /**
  * Session Bean implementation class BaseManager
@@ -19,8 +18,11 @@ import javax.persistence.Query;
 //@EJB(name="BaseManager", beanInterface=IBaseManager.class)
 public abstract class BaseManager<TEntity> implements IBaseManager<TEntity> {
 
+	
+	
 	//@PersistenceContext(unitName = "JPADB")
     protected EntityManager entityManager;
+    private Logger Log = LogManager.getLogger(BaseManager.class.getName());
 	
     /**
      * Default constructor. 
@@ -32,6 +34,7 @@ public abstract class BaseManager<TEntity> implements IBaseManager<TEntity> {
 	public void Insert(TEntity entity)
     {
     	entityManager.persist(entity);
+    	Log.info("New " + entity.getClass().getSimpleName() + " Inserted");
     }
 
 	public void Delete(TEntity entity)
@@ -44,7 +47,8 @@ public abstract class BaseManager<TEntity> implements IBaseManager<TEntity> {
     	entityManager.merge(entity);
     }
     
-    public List<TEntity> GetAll()
+    @SuppressWarnings("unchecked")
+	public List<TEntity> GetAll()
     {
     	TEntity entity = (TEntity) new Object();
     	System.out.println("Object is " + entity.getClass().getSimpleName());
