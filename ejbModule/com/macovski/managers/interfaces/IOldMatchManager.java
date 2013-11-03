@@ -1,10 +1,9 @@
-package com.macovski.interfaces;
-
-import javax.ejb.Remote;
+package com.macovski.managers.interfaces;
 
 import com.macovski.entities.OldMatch;
 
-@Remote
 public interface IOldMatchManager extends IBaseManager<OldMatch> {
+	
 	void InitializeEM();
+
 }
