@@ -1,9 +1,9 @@
-package com.macovski.sessions;
+package com.macovski.managers.implementation;
 
 import java.util.List;
 
 import com.macovski.entities.OldMatch;
-import com.macovski.interfaces.IOldMatchManager;
+import com.macovski.managers.interfaces.IOldMatchManager;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 /**
  * Session Bean implementation class OldMatchManager
  */
-@Stateless
+@Stateless(mappedName="OldMatchManager")
 @LocalBean
 public class OldMatchManager extends BaseManager<OldMatch> implements IOldMatchManager {
      

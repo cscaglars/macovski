@@ -1,12 +1,12 @@
-package com.macovski.sessions;
+package com.macovski.managers.implementation;
 
 import java.util.List;
 
 import com.macovski.entities.Match;
 import com.macovski.entities.Player;
-import com.macovski.interfaces.IPlayerManager;
+import com.macovski.managers.interfaces.IPlayerManager;
 
-import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +20,7 @@ import org.apache.log4j.LogManager;
  * Session Bean implementation class PlayerManager
  */
 @Stateless(mappedName="PlayerManager")
-@EJB(name="PlayerManager", beanInterface=IPlayerManager.class)
+@LocalBean
 public class PlayerManager extends BaseManager<Player> implements IPlayerManager {
      
 	@PersistenceContext(unitName = "JPADB")

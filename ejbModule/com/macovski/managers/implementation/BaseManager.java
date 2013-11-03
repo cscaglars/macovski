@@ -1,8 +1,8 @@
-package com.macovski.sessions;
+package com.macovski.managers.implementation;
 
 import java.util.List;
 
-import com.macovski.interfaces.IBaseManager;
+import com.macovski.managers.interfaces.IBaseManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

@@ -1,9 +1,9 @@
-package com.macovski.sessions;
+package com.macovski.managers.implementation;
 
 import java.util.List;
 
 import com.macovski.entities.Venue;
-import com.macovski.interfaces.IVenueManager;
+import com.macovski.managers.interfaces.IVenueManager;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

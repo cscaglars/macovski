@@ -1,11 +1,11 @@
-package com.macovski.sessions;
+package com.macovski.managers.implementation;
 
 import java.util.List;
 
 import com.macovski.entities.Match;
-import com.macovski.interfaces.IMatchManager;
+import com.macovski.managers.interfaces.IMatchManager;
 
-import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  */
 
 @Stateless(mappedName="MatchManager")
-@EJB(name="MatchManager", beanInterface=IMatchManager.class)
+@LocalBean
 public class MatchManager extends BaseManager<Match> implements IMatchManager {
       	
 	@PersistenceContext(unitName = "JPADB")
