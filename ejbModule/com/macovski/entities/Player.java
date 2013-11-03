@@ -134,4 +134,17 @@ public class Player extends Base {
 	public void setPlayedMatches(List<OldMatch> playedMatches) {
 		PlayedMatches = playedMatches;
 	}
+	
+	public Player() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Player(String name, String surname, String city ) {
+		// TODO Auto-generated constructor stub
+		PlayerName = name;
+		PlayerLastName = surname;
+		City = city;
+	}
+	
+	
 }

@@ -34,4 +34,15 @@ public class Login extends Base{
 	public void setPassword(String password) {
 		Password = password;
 	}
+	
+	public Login() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Login(String username, String password) {
+		// TODO Auto-generated constructor stub
+		
+		Username = username;
+		Password = password;		
+	}
 }

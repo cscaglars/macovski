@@ -1,7 +1,5 @@
 package com.macovski.BaseTest;
 
-import static org.junit.Assert.*;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,16 +17,16 @@ import com.macovski.entities.Match;
 import com.macovski.entities.Player;
 import com.macovski.entities.Stats;
 import com.macovski.entities.Venue;
-import com.macovski.interfaces.IMatchManager;
-import com.macovski.interfaces.IPlayerManager;
-import com.macovski.interfaces.IVenueManager;
 import com.macovski.jndi.JNDILookup;
+import com.macovski.managers.interfaces.IMatchManager;
+import com.macovski.managers.interfaces.IPlayerManager;
+import com.macovski.managers.interfaces.IVenueManager;
 
 public class BaseTest {
-
-	public static IPlayerManager playerManager = JNDILookup.getPlayerManagerLookup();
-	public static IMatchManager matchManager = JNDILookup.getMatchManagerLookup();
-	public static IVenueManager venueManager = JNDILookup.getVenueManagerLookup();
+	
+	public static  IPlayerManager playerManager = JNDILookup.getPlayerManagerLookup();
+	public static  IMatchManager matchManager = JNDILookup.getMatchManagerLookup();
+	public static  IVenueManager venueManager = JNDILookup.getVenueManagerLookup();
 	public boolean createDB = true;
 	
 	
@@ -65,7 +63,7 @@ public class BaseTest {
 	
 	private static void CreatePlayer()
 	{		
-		for (int i = 0; i < 100; i++) 
+		for (int i = 0; i < 10; i++) 
 		{			
 			Player player = new Player();
 			player.setPlayerName("User" + i);
@@ -183,6 +181,7 @@ public class BaseTest {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private static void PlayerRejectsMatch()
 	{
 		for (int i = 0; i < 100; i++) 
@@ -195,6 +194,7 @@ public class BaseTest {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private static void PlayerEnrollsToMatch()
 	{
 		for (int i = 0; i < 100; i++) 
